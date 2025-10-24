@@ -1,0 +1,77 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\User\\OneDrive\\Desktop\\EcoPay\\EcoPay\\contracts\\PaymentContract.sol": {
+      "lastModificationDate": 1761283743332,
+      "contentHash": "7e11b726844f9a53be30754afabeea00",
+      "sourceName": "contracts/PaymentContract.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PaymentContract"
+      ]
+    },
+    "C:\\Users\\User\\OneDrive\\Desktop\\EcoPay\\EcoPay\\contracts\\PhoneMapping.sol": {
+      "lastModificationDate": 1761283755259,
+      "contentHash": "d5d864f696f90d2168c60f25e24863dc",
+      "sourceName": "contracts/PhoneMapping.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PhoneMapping"
+      ]
+    }
+  }
+}

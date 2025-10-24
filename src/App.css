@@ -1,42 +1,287 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* -------------------- Global -------------------- */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+  background-color: var(--color-background-light, #f4f7f6);
+  color: var(--color-text-dark, #333);
+}
+
+/* -------------------- Navbar -------------------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--color-text-light, #fff);
+  border-bottom: 2px solid var(--color-primary-green, #38b000);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-primary-green);
+}
+
+.navbar-links a {
+  margin: 0 12px;
+  font-weight: 500;
+  transition: color 0.2s;
+  color: var(--color-text-dark);
+}
+
+.navbar-links a:hover {
+  color: var(--color-primary-green);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-get-started {
+  background-color: var(--color-primary-green);
+  color: var(--color-text-light);
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.nav-get-started:hover {
+  background-color: #2e8b00; /* slightly darker green */
+}
+
+.nav-log-in {
+  font-weight: 500;
+}
+
+/* -------------------- Hero Section -------------------- */
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 60px 30px;
+  background: linear-gradient(135deg, var(--color-background-light), var(--color-text-light));
+}
+
+.hero-content {
+  flex: 1 1 450px;
+  max-width: 600px;
+}
+
+.hero-tagline {
+  color: var(--color-primary-green);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.hero-content h1 {
+  font-size: 2.2rem;
+  margin: 10px 0;
+}
+
+.hero-description {
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.hero-actions .btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary-green);
+  color: var(--color-text-light);
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2e8b00;
+}
+
+.btn-secondary {
+  background-color: var(--color-text-light);
+  border: 2px solid var(--color-primary-green);
+  color: var(--color-primary-green);
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-green);
+  color: var(--color-text-light);
+}
+
+.hero-users {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatars-placeholder {
+  font-size: 1.8rem;
+}
+
+.hero-image-container {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-placeholder {
+  width: 300px;
+  height: 300px;
+  background-color: var(--color-card-purple-light, #e0e0ff);
+  border-radius: 20px;
+}
+
+/* -------------------- Feature Section -------------------- */
+.feature-section {
+  padding: 60px 30px;
+  text-align: center;
+  background-color: var(--color-background-light);
+}
+
+.section-title {
+  color: var(--color-primary-green);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  margin: 10px 0 40px 0;
+  color: var(--color-text-dark);
+}
+
+.feature-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background-color: var(--color-text-light);
+  border-radius: 12px;
+  padding: 25px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+/* -------------------- Impact Section -------------------- */
+.impact-section {
+  padding: 60px 30px;
+  background-color: var(--color-card-purple-light, #e0e0ff);
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.impact-title {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  color: var(--color-primary-green);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.stat-card {
+  background-color: var(--color-text-light);
+  padding: 20px;
+  border-radius: 12px;
+  width: 150px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.card {
-  padding: 2em;
+.stat-value {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--color-primary-green);
 }
 
-.read-the-docs {
-  color: #888;
+.stat-label {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+}
+
+.view-report-link {
+  font-weight: 600;
+  color: var(--color-primary-green);
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* -------------------- Flowchart Section -------------------- */
+.flowchart-container {
+  padding: 60px 30px;
+  text-align: center;
+}
+
+.flowchart h2 {
+  margin-bottom: 40px;
+}
+
+.flowchart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.flow-node {
+  background-color: var(--color-background-light);
+  border: 2px solid var(--color-primary-green);
+  border-radius: 10px;
+  padding: 15px 20px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.flow-node ul {
+  text-align: left;
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+}
+
+.flow-node::after {
+  content: "↓";
+  display: block;
+  font-size: 24px;
+  color: var(--color-primary-green);
+  margin-top: 10px;
+}
+
+.flow-node:last-child::after {
+  content: "";
 }

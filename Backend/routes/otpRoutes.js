@@ -1,5 +1,4 @@
 import express from "express";
-import pool from "../db.js";
 import twilio from "twilio";
 
 const router = express.Router();
@@ -32,18 +31,6 @@ router.post("/send", async (req, res) => {
     });
     console.log("OTP sent successfully via Twilio");
 
-    // Save phone + gmail to DB
-    try {
-      await pool.query(
-        "INSERT INTO users (gmail, phone) VALUES ($1, $2) ON CONFLICT (phone) DO NOTHING",
-        [gmail, phone]
-      );
-      console.log("User saved to database");
-    } catch (dbErr) {
-      console.error("Database error (non-critical):", dbErr.message);
-      // Continue even if DB fails
-    }
-
     res.json({ success: true, message: "OTP sent successfully" });
   } catch (err) {
     console.error("Error sending OTP:", err.message);
@@ -69,11 +56,6 @@ router.post("/verify", async (req, res) => {
       .verificationChecks.create({ to: `+91${phone}`, code });
 
     if (verification.status === "approved") {
-      // Mark verified in DB
-      await pool.query(
-        "UPDATE users SET verified = true WHERE phone = $1",
-        [phone]
-      );
       res.json({ success: true, message: "OTP verified successfully" });
     } else {
       res.status(400).json({ success: false, message: "Invalid OTP" });

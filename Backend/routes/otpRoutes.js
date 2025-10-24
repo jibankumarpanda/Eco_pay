@@ -6,34 +6,63 @@ const router = express.Router();
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const serviceSid = process.env.TWILIO_SERVICE_SID; // Twilio Verify service
+const serviceSid = process.env.TWILIO_SERVICE_SID;
+
+// Validate Twilio credentials
+if (!accountSid || !authToken || !serviceSid) {
+  console.error("Missing Twilio credentials in environment variables");
+}
+
 const client = twilio(accountSid, authToken);
 
 // Send OTP
 router.post("/send", async (req, res) => {
   const { phone, gmail } = req.body;
+  
+  // Validate input
+  if (!phone || !gmail) {
+    return res.status(400).json({ success: false, message: "Phone and email are required" });
+  }
   try {
+    // Send OTP via Twilio
+    console.log(`Sending OTP to +91${phone}`);
     await client.verify.v2.services(serviceSid).verifications.create({
-      to: `+91${phone}`, // change for your country
+      to: `+91${phone}`,
       channel: "sms",
     });
+    console.log("OTP sent successfully via Twilio");
 
     // Save phone + gmail to DB
-    await pool.query(
-      "INSERT INTO users (gmail, phone) VALUES ($1, $2) ON CONFLICT (phone) DO NOTHING",
-      [gmail, phone]
-    );
+    try {
+      await pool.query(
+        "INSERT INTO users (gmail, phone) VALUES ($1, $2) ON CONFLICT (phone) DO NOTHING",
+        [gmail, phone]
+      );
+      console.log("User saved to database");
+    } catch (dbErr) {
+      console.error("Database error (non-critical):", dbErr.message);
+      // Continue even if DB fails
+    }
 
     res.json({ success: true, message: "OTP sent successfully" });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "Error sending OTP" });
+    console.error("Error sending OTP:", err.message);
+    res.status(500).json({ 
+      success: false, 
+      message: "Error sending OTP",
+      error: err.message 
+    });
   }
 });
 
 // Verify OTP
 router.post("/verify", async (req, res) => {
   const { phone, code } = req.body;
+  
+  // Validate input
+  if (!phone || !code) {
+    return res.status(400).json({ success: false, message: "Phone and code are required" });
+  }
   try {
     const verification = await client.verify.v2
       .services(serviceSid)

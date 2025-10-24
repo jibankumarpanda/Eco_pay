@@ -7,15 +7,17 @@ export default function LoginPage() {
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState(1);
 
-  const backendUrl = "https://your-backend.onrender.com/api/otp";
+  const backendUrl = "https://eco-pay-8.onrender.com/api/otp";
 
   const sendOtp = async () => {
     try {
-      await axios.post(`${backendUrl}/send`, { gmail, phone });
+      const response = await axios.post(`${backendUrl}/send`, { gmail, phone });
+      console.log("OTP Response:", response.data);
       alert("OTP sent successfully!");
       setStep(2);
     } catch (err) {
-      alert("Failed to send OTP");
+      console.error("OTP Error:", err.response?.data || err.message);
+      alert(`Failed to send OTP: ${err.response?.data?.message || err.message}`);
     }
   };
 
